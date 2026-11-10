@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="An interactive inventory management website demonstration." />
+  <title>Inventory Management System</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main class="page">
+    <header class="page-header">
+      <div>
+        <h1>Inventory Management System</h1>
+        <p class="intro">Manage inventory records, quantities and prices in one place.</p>
+      </div>
+      <a class="github-link" href="https://github.com/Riska997/InventoryManagementSystem" target="_blank" rel="noopener noreferrer">Original Java Project ↗</a>
+    </header>
+
+    <section class="summary" aria-label="Inventory summary">
+      <article class="summary-card">
+        <span>Total items</span>
+        <strong id="totalItems">0</strong>
+        <small>Unique products</small>
+      </article>
+      <article class="summary-card">
+        <span>Units in stock</span>
+        <strong id="totalQuantity">0</strong>
+        <small>All quantities combined</small>
+      </article>
+      <article class="summary-card">
+        <span>Total stock value</span>
+        <strong id="totalValue">R 0.00</strong>
+        <small>Quantity × unit price</small>
+      </article>
+    </section>
+
+    <div class="content">
+      <section class="panel" aria-labelledby="formTitle">
+        <div class="panel-heading">
+          <h2 id="formTitle">Add inventory item</h2>
+          <p id="formSubtitle">Enter item details below.</p>
+        </div>
+        <form id="inventoryForm" novalidate>
+          <div class="field">
+            <label for="itemName">Item Name</label>
+            <input id="itemName" name="itemName" type="text" maxlength="100" placeholder="e.g. Wireless Mouse" autocomplete="off" required />
+          </div>
+          <div class="field">
+            <label for="itemId">Item ID</label>
+            <input id="itemId" name="itemId" type="text" maxlength="40" placeholder="e.g. ITEM-001" autocomplete="off" required />
+          </div>
+          <div class="field-grid">
+            <div class="field">
+              <label for="quantity">Quantity</label>
+              <input id="quantity" name="quantity" type="number" min="0" max="999999999" step="1" placeholder="0" required />
+            </div>
+            <div class="field">
+              <label for="price">Price (ZAR)</label>
+              <input id="price" name="price" type="number" min="0" max="999999999" step="0.01" placeholder="0.00" required />
+            </div>
+          </div>
+          <p class="error" id="formError" role="alert" aria-live="polite"></p>
+          <div class="form-buttons">
+            <button id="submitButton" class="button primary" type="submit">Add</button>
+            <button id="clearButton" class="button light" type="button">Clear</button>
+          </div>
+          <p class="hint">To update an item, select <b>Edit</b> in the table first.</p>
+        </form>
+      </section>
+
+      <section class="panel table-panel" aria-labelledby="inventoryTitle">
+        <div class="panel-heading table-heading">
+          <div>
+            <h2 id="inventoryTitle">Inventory records</h2>
+            <p>Add, update and delete your items.</p>
+          </div>
+          <span id="recordCount" class="record-count">0 records</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Item ID</th>
+                <th>Item Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="inventoryTable"></tbody>
+          </table>
+          <p id="emptyMessage" class="empty">No inventory items yet. Add your first item using the form.</p>
+        </div>
+      </section>
+    </div>
+
+    <footer class="footer">
+      <span>Created by <a href="https://riska997.github.io/personal-portfolio-website/">Prisca Mulishi</a></span>
+    </footer>
+    <div id="message" class="toast" role="status" aria-live="polite" hidden></div>
+  </main>
+</body>
+</html>
